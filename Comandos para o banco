@@ -1,0 +1,17 @@
+Create table Negociação_de_mercadoria (código_de_mercadoria number, tipo_de_mercadoria varchar(2), nome_de_mercadoria varchar(2), quantidade number, preço number, tipo_do_negocio varchar(2) )
+Primary key (código_de_Mercadoria);
+ 
+Commit;
+
+
+CREATE PROCEDURE Nova_negociacao( p_merc_id Negociação_de_mercadoria.código_de_mercadoria%TYPE, p_merc_tipo Negociação_de_mercadoria.tipo_de_mercadoria%TYPE, p_merc_nome Negociação_de_mercadoria.nome_de_mercadoria%TYPE, p_quant Negociação_de_mercadoria.quantidade%TYPE, p_preço Negociação_de_mercadoria.preço%TYPE, p_tipo_neg Negociação_de_mercadoria.tipo_do_negocio%TYPE)
+BEGIN
+INSERT INTO Negociação_de_mercadoria
+VALUES  (p_merc_id, p_merc_tipo, p_merc_nome, p_quant, p_preço, p_tipo_neg);
+DBMS_OUTPUT.PUTLINE('CADASTRO REALIZADO COM SUCESSO', 
+p_merc_id, p_merc_tipo, p_merc_nome, p_quant, p_preço, p_tipo_neg)
+EXCEPTION
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUTLINE('DADOS INCOMPLETOS OU FORA DO PADRÃO')
+ROLLBACK
+END;
